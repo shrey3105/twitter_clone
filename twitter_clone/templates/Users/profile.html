@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Welcome @{{profile.user.username}}</h1>
+{% if profile.user == user %}
+<div class="profile_image image_fluid profile_icon">
+  <i class="fas fa-users fa-4x"></i>
+    <a href="{% url 'tweet:create_tweet' %}"><i class="fas fa-pen-alt fa-4x"></i></a>
+</div>
+{% endif %}
+<div class="followes_following">
+  <div>
+      <span class="follow">Followers: {{follower}}</span> <a href="{% url 'Users:show_followers' %}">
+        <button type="button" name="button" class="btn btn-sm btn-primary">Show</button></a>
+  </div>
+  <div>
+      <span class="follow">Following: {{following}} <a href="{% url 'Users:show_following' %}">
+        <button type="button" name="button" class="btn btn-sm btn-primary">Show</button></a>
+  </div>
+</div>
+<h2 class="my_tweets_header">My Tweets:</h2>
+{% for post in profile.tweets.all %}
+<div class="my_tweets">
+  <h4>{{post.message}}</h4>
+  <span class="tweet_attributes"><a href="{% url 'tweet:like_tweet' pk=post.pk %}"><i class="fas fa-thumbs-up"></i></a>{{post.likes}}</span>
+  <span class="tweet_attributes"><a href="{% url 'tweet:comment_on_post' pk=post.pk %}"><i class="fas fa-comment"></i></a>{{post.comments.count}}</span>
+  {% if post.profile.user == user %}
+  <span class="tweet_attributes"><a href="{% url 'tweet:delete_tweet' pk=post.pk %}" class="btn btn-warning btn-sm delete_tweet_button">Delete</a></span>
+  {% endif %}
+  <form class="comment_in_loop" action="{% url 'tweet:write_comment' pk=post.pk%}" method="post">
+    {% csrf_token %}
+    <input type="text" name="comment" placeholder="Write a comment">
+    <input type="submit" value="Go" class="btn btn-sm btn-primary">
+  </form>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="all_followers">
+  {% for follower in follower_obj %}
+  <div class="single_follower">
+    {{follower.user.user.username}}
+    <a href="{% url 'Users:profile' username=follower.user.user.username %}"><i class="far fa-user"></i></a>
+    <div class="joined_together">
+      Connected on : {{follower.follow_date}}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

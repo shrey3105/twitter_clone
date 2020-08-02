@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="all_followering">
+  {% for following in following_obj %}
+  <div class="single_following">
+    <div class="following_name">
+        @{{following.follows.user.username}} <a href="{% url 'Users:profile' username=following.follows.user.username %}"><i class="far fa-user"></i></a>
+    </div>
+    <div class="joined_together">
+      Connected on : {{following.follow_date}}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

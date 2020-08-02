@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h3>All tweets</h3>
+<div class="all_tweets">
+  {% for tweet in tweets %}
+  <div class="single_tweet">
+    <div class="tweet_username">
+      <a href="{% url 'Users:profile' username=tweet.profile.user.username %}">@{{tweet.profile.user.username}}</a>
+    </div>
+    <div class="written_date">
+      {{tweet.create_date}}
+    </div>
+    <div class="tweet_text">
+      {{tweet.message}}
+    </div>
+    <div class="other_attributes">
+      <span><a href="{% url 'tweet:like_tweet_from_feed' pk=tweet.pk %}"><i class="fas fa-thumbs-up">{{tweet.likes}}</i></span>
+      <span><a href="{% url 'tweet:comment_on_post' pk=tweet.pk %}"><i class="fas fa-comment"></i></a>{{tweet.comments.count}}</span>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

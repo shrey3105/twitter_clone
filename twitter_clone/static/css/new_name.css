@@ -1,0 +1,83 @@
+body{
+  font-family:'Roboto Slab';
+  line-height: 200%;
+  background-color: #222;
+  color:rgb(255,255,255,0.7);
+}
+
+.single_follower{
+  width:20%;
+  margin:2.5%;
+  float:left;
+  border:2px solid black;
+  text-align: center;
+}
+
+.single_profile{
+  width:20%;
+  margin:2.5%;
+  float:left;
+  border:2px solid black;
+  text-align: center;
+}
+.single_tweet{
+  border-top:2px solid black;
+}
+
+.connection_button{
+  margin-bottom:5px;
+}
+
+.my_tweets_header{
+  position: relative;
+  -webkit-animation: movingtitle 8 infinite alternate linear;
+  animation: movingtitle 8s infinite alternate linear;
+}
+
+@-webkit-keyframes movingtitle
+{
+    from {left: 0px;}
+    to {left: 800px;}
+}
+
+.my_tweets{
+  border-top:2px solid blue;
+  margin_top:20px;
+  margin-bottom:20px;
+}
+
+.tweet_attributes{
+  margin-left:20px;
+}
+
+.roboto{
+  font-weight: bold;
+  font-family: Roboto;
+  font-size:20px;
+}
+
+#navbar{
+  margin:0;
+  padding:0;
+}
+
+.nav-item{
+  margin:0;
+  padding:0;
+}
+
+.navbar-brand{
+  font-family:Pacifico;
+  margin:0;
+  padding:0;
+}
+
+.navbar-brand:hover{
+  background:powderblue;
+  transition:1s;
+}
+
+.nav-item:hover{
+  background:powderblue;
+  transition:1s;
+}

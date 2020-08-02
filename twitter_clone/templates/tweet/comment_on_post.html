@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h2>{{object.message}}</h2>
+<div class="comment_on_post">
+  {% for comment in object.comments.all %}
+  <p> <a href="{% url 'Users:profile' username=comment.profile.user.username %}">@{{comment.profile.user.username}}</a>
+  {{comment.comment}}</p>
+  {% endfor %}
+  <div class="comment_from_detail">
+    <form action="{% url 'tweet:comment_from_detail' pk=object.pk %}" method="post">
+      {% csrf_token %}
+      <input type="text" name="comment" placeholder="Write a comment">
+      <input type="submit" value="Go" class="btn btn-sm btn-primary">
+    </form>
+  </div>
+</div>
+{% endblock %}
